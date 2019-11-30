@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <button type="button" name="button" id="hhh">点我</button>
+  </body>
+  <script src="./publishSubscribe.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    let pond = _subscribe();
+    let a = document.querySelector('#hhh');
+    a.onclick = function (ev) {
+      pond.fire(ev);
+    }
+    let fn1 = function() {
+      console.log(1)
+    }
+    let fn2 = function() {
+      console.log(2)
+      pond.remove(fn1)
+    }
+
+    let fn3 = function() {
+      console.log(3)
+      pond.remove(fn1)
+    }
+    let fn4 = function(ev) {
+      console.log(4, ev)
+    }
+    pond.add(fn1);
+    pond.add(fn1);
+    pond.add(fn2);
+    pond.add(fn3);
+    pond.add(fn4);
+  </script>
+</html>
